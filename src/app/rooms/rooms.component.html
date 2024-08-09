@@ -1,0 +1,38 @@
+<app-header></app-header>
+
+<!-- In this file you will learn about ngStyle,ngClass, if,for, hidden attributes
+Just read the code -->
+
+<header>
+    <h1>Welcome to {{hotelName}}</h1>
+</header>
+
+<main>
+
+    <!-- Hidden is a property binding syntax -->
+    <div [hidden]="hideRooms">
+        Number of Rooms:
+        <div [ngStyle]="{color: numberOfRooms > 9 ? 'green': 'yellow',backgroundColor: numberOfRooms > 8 ? 'yellow': 'orange'}" [innerText] = "numberOfRooms"></div>
+
+    </div>
+
+    <button (click)="toggle()">Toggle</button>
+    <br>
+    <br>
+
+    <!-- How ngIf now works in angular 17 -->
+
+    <!-- You can also add @else if -->
+
+    @if(rooms.totalRooms > 0){
+        <h2>There is available rooms ready for rent</h2>
+    }
+    @else {
+        <h2>There are no available rooms as at now</h2>
+    }
+
+    <div>
+        <button (click)="addRoom()">Add Room</button>
+    </div>
+    <app-rooms-list [rooms]="roomList"  [title]='title' (selectedRoom)="roomSelected($event)"></app-rooms-list>
+</main>

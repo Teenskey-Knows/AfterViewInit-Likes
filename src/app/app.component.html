@@ -1,0 +1,16 @@
+
+@switch (role) {
+    @case ('Admin') {
+<app-rooms></app-rooms>
+
+    }
+    @case ('User') {
+        <h2>Welcome User!</h2>
+    }
+    @case ('Users') {
+        <h2>You're not allowed to view this route!</h2>
+    }
+    @default {
+        <h2>You can first login before continuing browsing</h2>
+    }
+}

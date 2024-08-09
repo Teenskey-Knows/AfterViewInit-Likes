@@ -1,0 +1,58 @@
+
+
+
+<h1>{{title}}</h1>
+
+<table>
+
+  <caption>Sales Report</caption>
+
+  <thead>
+    <tr>
+      <th>Room Number</th>
+      <th>Room Type</th>
+      <th>Room Price</th>
+      <th>Room Amenities</th>
+      <th>Checkin Time</th>
+      <th>Rating</th>
+      <th>Select Room</th>
+    </tr>
+  </thead>
+
+
+  @for (room of rooms; track room.roomNumber;let i = $index; let e = $even; let o=$odd;let count = $count; let first =
+  $first; let last = $last ){
+  <!-- <th>
+                {{count}} Number of Rooms
+            </th> -->
+  <tbody>
+    <tr [ngClass]="e? 'even':'odd'">
+      <td>{{i + 1}}</td>
+      <td>{{room.roomType}}</td>
+      <td>{{room.price}}</td>
+      <td>{{room.amenities}}</td>
+      <td>{{room.checkinTime | date: 'mediumDate'}}</td>
+      <!-- There are various date formats that you can check on Angular Docs -->
+      <td>{{room.rating | number: '1.0-0'}}</td>
+      <td>
+        <button class="btn btn-primary" (click)="selectRoom(room)">Select</button>
+
+      </td>
+
+    </tr>
+  </tbody>
+  }
+  @empty {
+  <tbody>
+    <tr>
+      <td>No room Found</td>
+      <td>No room Found</td>
+      <td>No room Found</td>
+      <td>No room Found</td>
+      <td>No room Found</td>
+
+    </tr>
+  </tbody>
+
+  }
+</table>
