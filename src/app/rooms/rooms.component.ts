@@ -1,4 +1,4 @@
-import { Component, DoCheck, OnInit } from '@angular/core';
+import { AfterViewInit, Component, DoCheck, OnInit, ViewChild } from '@angular/core';
 import { Room, RoomList } from './rooms';
 import { CommonModule } from '@angular/common';
 import { RoomsListComponent } from "../rooms-list/rooms-list.component";
@@ -12,10 +12,24 @@ import { HeaderComponent } from '../header/header.component';
     styleUrl: './rooms.component.scss',
     imports: [CommonModule, RoomsListComponent,HeaderComponent]
 })
-export class RoomsComponent implements OnInit, DoCheck{
+export class RoomsComponent implements OnInit, DoCheck,AfterViewInit{
  
+// ViewChild - Using ViewChild;-> We create a new instance of a specific component in another component
+@ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
 
 
+//In order to access the component in the @ViewChild instance you have to access it under hook ngAfterViewInit cycle.
+
+//Now there are two attributes that should be included at line 18 => 
+// @ViewChild(HeaderComponent, {static: true}) headerComponent!: HeaderComponent;
+// By  default static is always false
+// By static being set to true will mean
+ngAfterViewInit(){
+
+
+  console.log(this.headerComponent);
+  
+}
 
  roomList: RoomList[] = [];
 
@@ -137,3 +151,7 @@ export class RoomsComponent implements OnInit, DoCheck{
   
 
 }
+function View(target: RoomsComponent, propertyKey: 'roomList'): void {
+  throw new Error('Function not implemented.');
+}
+
